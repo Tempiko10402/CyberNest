@@ -1,66 +1,34 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина — TechKG</title>
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — TechKG</title><link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">TechKG</div>
-            <nav>
-                <a href="index.html">Главная</a>
-                <a href="catalog.html">Каталог</a>
-                <a href="cart.html" class="active">Корзина (3)</a>
-                <a href="contacts.html">Контакты</a>
-            </nav>
-        </div>
-    </header>
-
+    </head><body>
+    <div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle">СветТьма</label></div>
+    
+    <header><div class="container">
+        <div class="logo">TechKG</div>
+        <div class="nav-toggle" onclick="this.parentNode.parentNode.querySelector('nav').classList.toggle('open')"><span></span><span></span><span></span></div>
+        <nav><a href="index.html">Главная</a><a href="catalog.html">Каталог</a><a href="cart.html" class="active">Корзина (3)</a><a href="contacts.html">Контакты</a></nav>
+    </div></header>
+    
     <div class="cart-page container">
         <h2>Ваша корзина</h2>
         <div class="cart-items">
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100x100.png?text=Xiaomi+14" alt="">
-                <div class="info">
-                    <h4>Смартфон Xiaomi 14</h4>
-                    <p>Черный, 12/512 ГБ</p>
-                </div>
-                <div class="quantity">1 шт.</div>
-                <div class="price">49 990 ₽</div>
-            </div>
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100x100.png?text=AirPods" alt="">
-                <div class="info">
-                    <h4>Наушники AirPods Pro 2</h4>
-                </div>
-                <div class="quantity">1 шт.</div>
-                <div class="price">24 990 ₽</div>
-            </div>
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100x100.png?text=Чехол" alt="">
-                <div class="info">
-                    <h4>Чехол Spigen для iPhone</h4>
-                </div>
-                <div class="quantity">2 шт.</div>
-                <div class="price">3 980 ₽</div>
-            </div>
+            <div class="cart-item"><img src="https://via.placeholder.com/100x100.png?text=Xiaomi" alt=""><div class="info"><h4>Xiaomi 14</h4><p>Черный, 12/512</p></div><div class="quantity">1 шт.</div><div class="price">49 990 ₽</div></div>
+            <div class="cart-item"><img src="https://via.placeholder.com/100x100.png?text=AirPods" alt=""><div class="info"><h4>AirPods Pro 2</h4></div><div class="quantity">1 шт.</div><div class="price">24 990 ₽</div></div>
         </div>
-
-        <div class="cart-summary">
-            <div class="total">Итого: <strong>78 960 ₽</strong></div>
-            <button class="btn-checkout">Оформить заказ</button>
-            <a href="catalog.html" class="continue-shopping">Продолжить покупки</a>
+        <div class="cart-summary"><div class="total">Итого: <strong>74 980 ₽</strong></div>
+            <button class="btn-big">Оформить заказ</button>
+            <a href="catalog.html">Продолжить покупки</a>
         </div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 TechKG</p>
-        </div>
-    </footer>
-</body>
-</html>
+    
+    <footer><div class="container"><p>© 2025 TechKG</p></div></footer>
+    <a href="#" class="to-top" id="toTop">Вверх</a>
+    <script>
+        const t = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme')==='dark') { document.body.setAttribute('data-theme','dark'); t.checked=true; }
+        t.addEventListener('change',()=>{ if(t.checked){document.body.setAttribute('data-theme','dark');localStorage.setItem('theme','dark');}
+        else{document.body.removeAttribute('data-theme');localStorage.setItem('theme','light');}});
+        window.addEventListener('scroll',()=>{document.getElementById('toTop').classList.toggle('show',window.scrollY>500);});
+    </script>
+    </body></html>

@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechKG — Главная</title>
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechKG — Главная</title><link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">TechKG</div>
-            <nav>
-                <a href="index.html" class="active">Главная</a>
-                <a href="catalog.html">Каталог</a>
-                <a href="cart.html">Корзина (0)</a>
-                <a href="contacts.html">Контакты</a>
-            </nav>
-            <div class="search-mobile">
-                <input type="text" placeholder="Поиск...">
-            </div>
-        </div>
-    </header>
-
-    <div class="hero">
-        <div class="container">
-            <h1>Лучшая техника в Кыргызстане</h1>
-            <p>Скидки до 50% — доставка по Бишкеку бесплатно!</p>
-            <a href="catalog.html" class="btn-big">Перейти в каталог</a>
-        </div>
-    </div>
-
-    <main class="container">
-        <h2 class="section-title">Популярные товары</h2>
-        <div class="products">
-            <!-- 24 карточки — копируй блок <div class="card"> сколько угодно -->
+    </head><body>
+    <div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle">СветТьма</label></div>
+    
+    <header><div class="container">
+        <div class="logo">TechKG</div>
+        <div class="nav-toggle" onclick="this.parentNode.parentNode.querySelector('nav').classList.toggle('open')"><span></span><span></span><span></span></div>
+        <nav><a href="index.html" class="active">Главная</a><a href="catalog.html">Каталог</a><a href="cart.html">Корзина (0)</a><a href="contacts.html">Контакты</a></nav>
+    </div></header>
+    
+    <div class="hero"><div class="container">
+        <h1>Лучшая техника в Кыргызстане</h1><p>Скидки до 50% — доставка по Бишкеку бесплатно!</p>
+        <a href="catalog.html" class="btn-big">В каталог</a>
+    </div></div>
+    
+    <main class="container"><h2 class="section-title">Популярные товары</h2>
+    <div class="products">
+        <!-- 24 карточки — копируй блок <div class="card"> сколько угодно -->
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Ноутбук+1" alt=""><h3>Ноутбук Lenovo IdeaPad</h3><p class="price">54 990 ₽</p><button>В корзину</button></div>
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Телефон+2" alt=""><h3>iPhone 15 Pro</h3><p class="price">109 990 ₽</p><button>В корзину</button></div>
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Наушники+3" alt=""><h3>AirPods Pro 2</h3><p class="price">24 990 ₽</p><button>В корзину</button></div>
@@ -61,13 +44,17 @@
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Дрон+22" alt=""><h3>DJI Mini 4 Pro</h3><p class="price">89 990 ₽</p><button>В корзину</button></div>
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Игровая+приставка+23" alt=""><h3>PlayStation 5</h3><p class="price">64 990 ₽</p><button>В корзину</button></div>
             <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Xbox+24" alt=""><h3>Xbox Series X</h3><p class="price">62 990 ₽</p><button>В корзину</button></div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 TechKG — Все права защищены. Бишкек, Кыргызстан</p>
-        </div>
-    </footer>
-</body>
-</html>
+        <!-- Добавляй сколько угодно — просто копируй строку выше -->
+    </div></main>
+    
+    <footer><div class="container"><p>© 2025 TechKG — Бишкек, Кыргызстан</p></div></footer>
+    <a href="#" class="to-top" id="toTop">Вверх</a>
+    
+    <script>
+        const t = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme')==='dark') { document.body.setAttribute('data-theme','dark'); t.checked=true; }
+        t.addEventListener('change',()=>{ if(t.checked){document.body.setAttribute('data-theme','dark');localStorage.setItem('theme','dark');}
+        else{document.body.removeAttribute('data-theme');localStorage.setItem('theme','light');}});
+        window.addEventListener('scroll',()=>{document.getElementById('toTop').classList.toggle('show',window.scrollY>500);});
+    </script>
+    </body></html>  

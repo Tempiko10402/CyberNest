@@ -1,67 +1,37 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог — TechKG</title>
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — TechKG</title><link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">TechKG</div>
-            <nav>
-                <a href="index.html">Главная</a>
-                <a href="catalog.html" class="active">Каталог</a>
-                <a href="cart.html">Корзина (0)</a>
-                <a href="contacts.html">Контакты</a>
-            </nav>
-        </div>
-    </header>
-
+    </head><body>
+    <div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle">СветТьма</label></div>
+    
+    <header><div class="container">
+        <div class="logo">TechKG</div>
+        <div class="nav-toggle" onclick="this.parentNode.parentNode.querySelector('nav').classList.toggle('open')"><span></span><span></span><span></span></div>
+        <nav><a href="index.html">Главная</a><a href="catalog.html" class="active">Каталог</a><a href="cart.html">Корзина (0)</a><a href="contacts.html">Контакты</a></nav>
+    </div></header>
+    
     <div class="catalog-page container">
-        <aside class="filters">
-            <h3>Фильтры</h3>
-            <div class="filter">
-                <h4>Цена</h4>
-                <input type="range" min="0" max="300000" value="150000">
-                <p>до 150 000 ₽</p>
-            </div>
-            <div class="filter">
-                <h4>Бренд</h4>
-                <label><input type="checkbox"> Apple</label>
-                <label><input type="checkbox"> Samsung</label>
-                <label><input type="checkbox"> Xiaomi</label>
-                <label><input type="checkbox"> Lenovo</label>
-            </div>
-            <div class="filter">
-                <h4>Категория</h4>
-                <label><input type="checkbox"> Смартфоны</label>
-                <label><input type="checkbox"> Ноутбуки</label>
-                <label><input type="checkbox"> Наушники</label>
-            </div>
-            <button class="btn-filter">Применить</button>
+        <aside class="filters"><h3>Фильтры</h3>
+            <div class="filter"><h4>Цена</h4><input type="range" min="0" max="300000"><p>до 300 000 ₽</p></div>
+            <div class="filter"><h4>Бренд</h4><label><input type="checkbox"> Apple</label><label><input type="checkbox"> Samsung</label></div>
+            <button class="btn-big">Применить</button>
         </aside>
-
         <section class="catalog-main">
-            <div class="search-bar">
-                <input type="text" placeholder="Поиск по каталогу...">
-                <button>Найти</button>
-            </div>
+            <div class="search-bar"><input type="text" placeholder="Поиск..."><button>Найти</button></div>
             <div class="products">
-                <!-- Те же карточки, что на главной -->
-                <!-- Вставь сюда любые карточки из index.html -->
-                <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Товар+1" alt=""><h3>Товар 1</h3><p class="price">19 990 ₽</p><button>В корзину</button></div>
-                <!-- Добавляй сколько угодно -->
+                <!-- Копируй карточки из index.html -->
+                <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Товар" alt=""><h3>Любой товар</h3><p class="price">19 990 ₽</p><button>В корзину</button></div>
             </div>
         </section>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 TechKG</p>
-        </div>
-    </footer>
-</body>
-</html>
+    
+    <footer><div class="container"><p>© 2025 TechKG</p></div></footer>
+    <a href="#" class="to-top" id="toTop">Вверх</a>
+    <script>
+        const t = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme')==='dark') { document.body.setAttribute('data-theme','dark'); t.checked=true; }
+        t.addEventListener('change',()=>{ if(t.checked){document.body.setAttribute('data-theme','dark');localStorage.setItem('theme','dark');}
+        else{document.body.removeAttribute('data-theme');localStorage.setItem('theme','light');}});
+        window.addEventListener('scroll',()=>{document.getElementById('toTop').classList.toggle('show',window.scrollY>500);});
+    </script>
+    </body></html>
