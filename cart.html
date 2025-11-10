@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - MyShop | CYBERPUNK</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">/// MyShop</a></div>
+                <div class="cart-link">
+                    <a href="cart.html">КОРЗИНА</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>// ТОРГОВЫЙ ИНТЕРФЕЙС //</h1>
+
+        <ul class="cart-list">
+            <li class="cart-item">
+                <div class="item-info">
+                    <h2 class="product-title">НОУТБУК PRO V4.0</h2>
+                    <div class="item-details">
+                        <p>ЦЕНА: 1200.00 КРЕДИТОВ</p>
+                        <p>КОЛ-ВО: 1</p>
+                        <p>СУММА: <strong>1200.00 КРЕДИТОВ</strong></p>
+                    </div>
+                </div>
+                <a href="#" class="btn" style="background-color: #444; color: #aaa; width: 100px;">УДАЛИТЬ</a>
+            </li>
+
+            <li class="cart-item">
+                <div class="item-info">
+                    <h2 class="product-title">АУДИО-ИНТЕРФЕЙС</h2>
+                    <div class="item-details">
+                        <p>ЦЕНА: 99.99 КРЕДИТОВ</p>
+                        <p>КОЛ-ВО: 2</p>
+                        <p>СУММА: <strong>199.98 КРЕДИТОВ</strong></p>
+                    </div>
+                </div>
+                <a href="#" class="btn" style="background-color: #444; color: #aaa; width: 100px;">УДАЛИТЬ</a>
+            </li>
+        </ul>
+
+        <div class="cart-summary">
+            <p>ИТОГОВАЯ СУММА: 
+                <span style="color: var(--color-neon-primary);">
+                    1399.98 КРЕДИТОВ
+                </span>
+            </p>
+            <a href="checkout.html" class="btn btn-primary">ПЕРЕЙТИ К ПРОВЕРКЕ</a>
+        </div>
+    </main>
+</body>
+</html>

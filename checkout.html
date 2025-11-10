@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа - MyShop | CYBERPUNK</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">/// MyShop</a></div>
+                <div class="cart-link">
+                    <a href="cart.html">КОРЗИНА</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>// ВВОД ДАННЫХ //</h1>
+
+        <form class="checkout-form" method="POST" action="#">
+            
+            <div class="form-group">
+                <label for="name">ИМЯ ПОЛЬЗОВАТЕЛЯ:</label>
+                <span class="form-icon">👤</span>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-MAIL (ШИФРОВАННЫЙ):</label>
+                <span class="form-icon">✉️</span>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">КОНТАКТНЫЙ НОМЕР:</label>
+                <span class="form-icon">📞</span>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">АДРЕС ТОЧКИ ВЫДАЧИ:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">АВТОРИЗОВАТЬ ТРАНЗАКЦИЮ</button>
+        </form>
+    </main>
+</body>
+</html>

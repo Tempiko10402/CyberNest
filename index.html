@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - MyShop | CYBERPUNK</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">/// MyShop</a></div>
+                <div class="cart-link">
+                    <a href="cart.html">КОРЗИНА [0]</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>// ТОВАРЫ ДАННЫХ //</h1>
+
+        <section class="product-tools">
+            <form class="search-bar" action="#" method="GET">
+                <input type="text" name="query" placeholder="ИСКАТЬ ДАННЫЕ..." aria-label="Поиск товаров">
+                <button type="submit" class="search-btn">НАЙТИ //</button>
+            </form>
+
+            <div class="filter-dropdown">
+                <label for="sort-by">СОРТИРОВАТЬ ПО:</label>
+                <select id="sort-by" name="sort-by">
+                    <option value="default">ПО УМОЛЧАНИЮ</option>
+                    <option value="price-asc">ЦЕНЕ (МИН.)</option>
+                    <option value="price-desc">ЦЕНЕ (МАКС.)</option>
+                    <option value="name-asc">АЛФАВИТ</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="product-grid">
+
+            <div class="product-card">
+                <span class="badge">NEW</span>
+                <img src="https://via.placeholder.com/300x200.png?text=Notebook+Pro" alt="Ноутбук Pro" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">НОУТБУК PRO V4.0</h2>
+                        <p class="product-price">1200.00 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="badge sale">СКИДКА 10%</span>
+                <img src="https://via.placeholder.com/300x200.png?text=Headphones" alt="Беспроводные наушники" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">АУДИО-ИНТЕРФЕЙС</h2>
+                        <p class="product-price">99.99 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Smartphone+Ultra" alt="Смартфон Ultra" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">СМАРТФОН ULTRA X</h2>
+                        <p class="product-price">850.50 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Keyboard" alt="Механическая клавиатура" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">КЛАВИАТУРА TACTICAL</h2>
+                        <p class="product-price">149.00 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=HDD+2TB" alt="Внешний жесткий диск 2ТБ" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">ПАМЯТЬ: 2 ТБ HDD</h2>
+                        <p class="product-price">75.00 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Smartwatch" alt="Умные часы FitWatch" class="product-image">
+                <div class="product-info">
+                    <div>
+                        <h2 class="product-title">ЧАСЫ: FITWATCH Z1</h2>
+                        <p class="product-price">199.99 КРЕДИТОВ</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">ДОБАВИТЬ В КОРЗИНУ</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
