@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — TechKG</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">TechKG</div>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="catalog.html" class="active">Каталог</a>
+                <a href="cart.html">Корзина (0)</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="catalog-page container">
+        <aside class="filters">
+            <h3>Фильтры</h3>
+            <div class="filter">
+                <h4>Цена</h4>
+                <input type="range" min="0" max="300000" value="150000">
+                <p>до 150 000 ₽</p>
+            </div>
+            <div class="filter">
+                <h4>Бренд</h4>
+                <label><input type="checkbox"> Apple</label>
+                <label><input type="checkbox"> Samsung</label>
+                <label><input type="checkbox"> Xiaomi</label>
+                <label><input type="checkbox"> Lenovo</label>
+            </div>
+            <div class="filter">
+                <h4>Категория</h4>
+                <label><input type="checkbox"> Смартфоны</label>
+                <label><input type="checkbox"> Ноутбуки</label>
+                <label><input type="checkbox"> Наушники</label>
+            </div>
+            <button class="btn-filter">Применить</button>
+        </aside>
+
+        <section class="catalog-main">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск по каталогу...">
+                <button>Найти</button>
+            </div>
+            <div class="products">
+                <!-- Те же карточки, что на главной -->
+                <!-- Вставь сюда любые карточки из index.html -->
+                <div class="card"><img src="https://via.placeholder.com/300x200.png?text=Товар+1" alt=""><h3>Товар 1</h3><p class="price">19 990 ₽</p><button>В корзину</button></div>
+                <!-- Добавляй сколько угодно -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 TechKG</p>
+        </div>
+    </footer>
+</body>
+</html>
