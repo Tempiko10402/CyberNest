@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH LUXURY - Премиум электроника</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+    <!-- Анимированный фон -->
+    <div class="particles-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Всплывающее уведомление -->
+    <div class="notification" id="notification">
+        <span class="notification-icon">✓</span>
+        <span class="notification-text">Товар добавлен в корзину</span>
+    </div>
+
+    <!-- Шапка -->
+    <header class="glass-effect">
+        <div class="container">
+            <div class="header-top">
+                <h1 class="logo-animated">
+                    <a href="#home">
+                        <span class="logo-icon">⚡</span>
+                        TECH LUXURY
+                    </a>
+                </h1>
+
+                <!-- Поиск -->
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInput">
+                    <button class="search-btn">🔍</button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <!-- Действия пользователя -->
+                <div class="user-actions">
+                    <a href="#profile" class="action-btn">
+                        <span class="action-icon">👤</span>
+                        <span class="action-label">Профиль</span>
+                    </a>
+                    <a href="#favorites" class="action-btn">
+                        <span class="action-icon">❤️</span>
+                        <span class="action-label">Избранное</span>
+                        <span class="action-badge">3</span>
+                    </a>
+                    <a href="#cart" class="action-btn">
+                        <span class="action-icon">🛒</span>
+                        <span class="action-label">Корзина</span>
+                        <span class="action-badge">2</span>
+                    </a>
+                    <button class="theme-switcher" onclick="switchTheme()">
+                        <span class="theme-icon">🌓</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Навигация по категориям -->
+            <nav class="categories-nav">
+                <a href="#category-laptops" class="category-link">💻 Ноутбуки</a>
+                <a href="#category-phones" class="category-link">📱 Смартфоны</a>
+                <a href="#category-accessories" class="category-link">🎧 Аксессуары</a>
+                <a href="#category-watches" class="category-link">⌚ Умные часы</a>
+                <a href="#category-tablets" class="category-link">📲 Планшеты</a>
+                <a href="#category-audio" class="category-link">🔊 Аудио</a>
+                <a href="#sales" class="category-link special">🔥 Акции</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ГЛАВНАЯ СТРАНИЦА -->
+    <main class="page-content" id="home">
+        <!-- Слайдер баннеров -->
+        <section class="hero-slider">
+            <div class="slider-track">
+                <div class="slide active">
+                    <div class="slide-content glass-effect">
+                        <h2 class="gradient-text">Новинка: MacBook Pro M3</h2>
+                        <p>Невероятная производительность для профессионалов</p>
+                        <a href="#product-1" class="btn btn-primary ripple">
+                            <span>Узнать больше</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Каталог</span>
+            </div>
+
+            <!-- Фильтры и сортировка -->
+            <div class="filters-bar glass-effect">
+                <div class="filter-group">
+                    <label>Категория:</label>
+                    <select class="filter-select">
+                        <option>Все товары</option>
+                        <option>Ноутбуки</option>
+                        <option>Смартфоны</option>
+                        <option>Аксессуары</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Бренд:</label>
+                    <select class="filter-select">
+                        <option>Все бренды</option>
+                        <option>Apple</option>
+                        <option>Samsung</option>
+                        <option>Sony</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Цена:</label>
+                    <input type="range" class="price-range" min="0" max="200000" value="200000">
+                    <span class="price-value">до 200 000 ₽</span>
+                </div>
+                <div class="filter-group">
+                    <label>Сортировка:</label>
+                    <select class="filter-select">
+                        <option>По популярности</option>
+                        <option>По цене ↑</option>
+                        <option>По цене ↓</option>
+                        <option>По новизне</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Хиты продаж -->
+            <section class="section-title fade-in">
+                <h2 class="gradient-text">🔥 Хиты продаж</h2>
+                <div class="divider-glow"></div>
+            </section>
+
+            <section class="products-grid">
+                <!-- Товар 1 -->
+                <div class="product-card card-animate" style="animation-delay: 0.1s" data-product="1">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=MacBook+Pro" alt="MacBook Pro">
+                        <div class="product-badge">NEW</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>MacBook Pro M3</h3>
+                        <p class="product-desc">16" • 36GB RAM • 1TB SSD</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(124 отзыва)</span>
+                        </div>
+                        <p class="price gradient-text">159 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-1" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(1)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 2 -->
+                <div class="product-card card-animate" style="animation-delay: 0.2s" data-product="2">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=Sony+WH-1000XM5" alt="Sony">
+                        <div class="product-badge badge-hot">HOT</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sony WH-1000XM5</h3>
+                        <p class="product-desc">Шумоподавление • 30ч работы</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(89 отзывов)</span>
+                        </div>
+                        <p class="price gradient-text">29 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-2" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(2)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 3 -->
+                <div class="product-card card-animate" style="animation-delay: 0.3s" data-product="3">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=Galaxy+S24" alt="Samsung">
+                        <div class="product-badge">5G</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Samsung Galaxy S24 Ultra</h3>
+                        <p class="product-desc">512GB • AI Camera</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(156 отзывов)</span>
+                        </div>
+                        <p class="price gradient-text">79 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-3" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(3)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 4 -->
+                <div class="product-card card-animate" style="animation-delay: 0.4s" data-product="4">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=Apple+Watch" alt="Apple Watch">
+                        <div class="product-badge">NEW</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Apple Watch Series 9</h3>
+                        <p class="product-desc">GPS + Cellular</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(78 отзывов)</span>
+                        </div>
+                        <p class="price gradient-text">44 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-4" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(4)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 5 -->
+                <div class="product-card card-animate" style="animation-delay: 0.5s" data-product="5">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=iPad+Air" alt="iPad">
+                        <div class="product-badge badge-sale">-15%</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>iPad Air M2</h3>
+                        <p class="product-desc">11" • 256GB</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(92 отзыва)</span>
+                        </div>
+                        <p class="price gradient-text">64 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-5" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(5)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 6 -->
+                <div class="product-card card-animate" style="animation-delay: 0.6s" data-product="6">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="https://via.placeholder.com/300x200.png?text=JBL+Charge+5" alt="JBL">
+                        <div class="product-badge">IP67</div>
+                        <button class="favorite-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>JBL Charge 5</h3>
+                        <p class="product-desc">Waterproof • 20ч</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(67 отзывов)</span>
+                        </div>
+                        <p class="price gradient-text">14 990 ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-6" class="btn btn-secondary ripple">
+                                <span>Подробнее</span>
+                            </a>
+                            <button class="btn btn-primary ripple add-to-cart" onclick="addToCart(6)">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Отзывы клиентов -->
+            <section class="reviews-section fade-in">
+                <h2 class="gradient-text">💬 Отзывы наших клиентов</h2>
+                <div class="divider-glow"></div>
+                <div class="reviews-grid">
+                    <div class="review-card glass-effect">
+                        <div class="review-header">
+                            <span class="review-avatar">👨‍💼</span>
+                            <div>
+                                <h4>Алексей М.</h4>
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p>"Купил MacBook Pro - в восторге! Доставка быстрая, упаковка премиум. Рекомендую!"</p>
+                    </div>
+                    <div class="review-card glass-effect">
+                        <div class="review-header">
+                            <span class="review-avatar">👩‍💻</span>
+                            <div>
+                                <h4>Мария К.</h4>
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p>"Наушники Sony просто бомба! Шумоподавление работает идеально. Спасибо!"</p>
+                    </div>
+                    <div class="review-card glass-effect">
+                        <div class="review-header">
+                            <span class="review-avatar">👨‍🎓</span>
+                            <div>
+                                <h4>Дмитрий В.</h4>
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p>"Лучший магазин электроники! Цены честные, поддержка отличная."</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- СТРАНИЦА ТОВАРА -->
+    <section class="page-content" id="product-1">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <a href="#category-laptops">Ноутбуки</a>
+                <span class="separator">→</span>
+                <span>MacBook Pro M3</span>
+            </div>
+
+            <div class="product-detail glass-effect">
+                <div class="product-gallery">
+                    <img src="https://via.placeholder.com/600x400.png?text=MacBook+Pro+M3" alt="MacBook Pro" class="main-image">
+                </div>
+                <div class="product-detail-info">
+                    <h1 class="gradient-text">MacBook Pro M3</h1>
+                    <div class="rating-large">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="reviews">(124 отзыва)</span>
+                    </div>
+                    <p class="price-large gradient-text">159 990 ₽</p>
+                    <p class="product-description">
+                        Профессиональный ноутбук с революционным чипом M3. Невероятная производительность для работы с видео, 3D и разработки. Дисплей Liquid Retina XDR 16 дюймов с яркостью до 1600 нит.
+                    </p>
+                    
+                    <div class="specifications">
+                        <h3>Характеристики:</h3>
+                        <ul>
+                            <li><strong>Процессор:</strong> Apple M3 Pro (12-ядерный)</li>
+                            <li><strong>Оперативная память:</strong> 36 GB unified memory</li>
+                            <li><strong>Накопитель:</strong> 1 TB SSD</li>
+                            <li><strong>Дисплей:</strong> 16" Liquid Retina XDR</li>
+                            <li><strong>Графика:</strong> 18-ядерный GPU</li>
+                            <li><strong>Батарея:</strong> До 22 часов работы</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-actions-detail">
+                        <button class="btn btn-primary btn-large ripple" onclick="addToCart(1)">
+                            <span class="btn-icon">🛒</span>
+                            <span>Добавить в корзину</span>
+                        </button>
+                        <button class="btn btn-secondary ripple">
+                            <span>❤️ В избранное</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ -->
+    <section class="page-content" id="profile">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Профиль</span>
+            </div>
+
+            <div class="profile-layout">
+                <!-- Сайдбар профиля -->
+                <aside class="profile-sidebar glass-effect">
+                    <div class="profile-avatar">
+                        <div class="avatar-circle">👤</div>
+                        <h3>Иван Иванов</h3>
+                        <p>ivan@example.com</p>
+                    </div>
+                    <nav class="profile-menu">
+                        <a href="#profile-info" class="profile-menu-item active">
+                            <span>📝</span> Личные данные
+                        </a>
+                        <a href="#profile-orders" class="profile-menu-item">
+                            <span>📦</span> История заказов
+                        </a>
+                        <a href="#profile-favorites" class="profile-menu-item">
+                            <span>❤️</span> Избранное
+                        </a>
+                        <a href="#profile-addresses" class="profile-menu-item">
+                            <span>📍</span> Адреса доставки
+                        </a>
+                        <a href="#profile-settings" class="profile-menu-item">
+                            <span>⚙️</span> Настройки
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Контент профиля -->
+                <div class="profile-content">
+                    <!-- Личные данные -->
+                    <div class="profile-section glass-effect" id="profile-info">
+                        <h2>📝 Личные данные</h2>
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Имя</label>
+                                    <input type="text" value="Иван" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>Фамилия</label>
+                                    <input type="text" value="Иванов" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" value="ivan@example.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" value="+7 (999) 123-45-67" class="form-input">
+                            </div>
+                            <button type="submit" class="btn btn-primary ripple">
+                                <span>Сохранить изменения</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- История заказов -->
+                    <div class="profile-section glass-effect" id="profile-orders" style="display: none;">
+                        <h2>📦 История заказов</h2>
+                        <div class="orders-list">
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <span class="order-number">Заказ #12345</span>
+                                    <span class="order-date">15.11.2024</span>
+                                    <span class="order-status status-delivered">Доставлен</span>
+                                </div>
+                                <div class="order-items">
+                                    <p>MacBook Pro M3 × 1</p>
+                                    <p class="order-total">159 990 ₽</p>
+                                </div>
+                            </div>
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <span class="order-number">Заказ #12344</span>
+                                    <span class="order-date">10.11.2024</span>
+                                    <span class="order-status status-processing">В обработке</span>
+                                </div>
+                                <div class="order-items">
+                                    <p>Sony WH-1000XM5 × 2</p>
+                                    <p class="order-total">59 980 ₽</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Настройки -->
+                    <div class="profile-section glass-effect" id="profile-settings" style="display: none;">
+                        <h2>⚙️ Настройки</h2>
+                        <div class="settings-group">
+                            <h3>Тема оформления</h3>
+                            <div class="theme-options">
+                                <button class="theme-option active" onclick="setTheme('dark')">
+                                    <span>🌙</span> Тёмная
+                                </button>
+                                <button class="theme-option" onclick="setTheme('cyber')">
+                                    <span>🔮</span> Киберпанк
+                                </button>
+                                <button class="theme-option" onclick="setTheme('purple')">
+                                    <span>💜</span> Фиолетовая
+                                </button>
+                            </div>
+                        </div>
+                        <div class="settings-group">
+                            <h3>Язык</h3>
+                            <select class="form-input">
+                                <option>Русский</option>
+                                <option>English</option>
+                            </select>
+                        </div>
+                        <div class="settings-group">
+                            <h3>Уведомления</h3>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                                <span>Email уведомления</span>
+                            </label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                                <span>Push уведомления</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОРЗИНА -->
+    <section class="page-content" id="cart">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Корзина</span>
+            </div>
+            
+            <h2 class="gradient-text">🛒 Ваша корзина</h2>
+            
+            <div class="cart-container glass-effect">
+                <div class="cart-item slide-in">
+                    <img src="https://via.placeholder.com/100x80.png?text=MacBook" alt="MacBook">
+                    <div class="cart-item-info">
+                        <h3>MacBook Pro M3</h3>
+                        <p class="product-desc">16" • 36GB RAM • 1TB SSD</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="qty-btn">−</button>
+                        <span class="quantity-badge">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="cart-item-total">
+                        <p class="price gradient-text">159 990 ₽</p>
+                        <button class="btn-remove">
+                            <span class="remove-icon">✕</span>
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-item slide-in" style="animation-delay: 0.1s">
+                    <img src="https://via.placeholder.com/100x80.png?text=Sony" alt="Sony">
+                    <div class="cart-item-info">
+                        <h3>Sony WH-1000XM5</h3>
+                        <p class="product-desc">Шумоподавление • 30ч</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="qty-btn">−</button>
+                        <span class="quantity-badge">2</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="cart-item-total">
+                        <p class="price gradient-text">59 980 ₽</p>
+                        <button class="btn-remove">
+                            <span class="remove-icon">✕</span>
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="divider-glow"></div>
+                    <div class="total">
+                        <h3>Итого к оплате:</h3>
+                        <p class="total-price gradient-text pulse">219 970 ₽</p>
+                    </div>
+                    <a href="#checkout" class="btn btn-primary btn-large ripple">
+                        <span>Оформить заказ</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
+    <section class="page-content" id="checkout">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <a href="#cart">Корзина</a>
+                <span class="separator">→</span>
+                <span>Оформление</span>
+            </div>
+
+            <h2 class="gradient-text">Оформление заказа</h2>
+
+            <div class="checkout-container">
+                <div class="checkout-form glass-effect slide-in">
+                    <h3>Ваши данные</h3>
+                    <form action="#thankyou" method="get">
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">👤</span>
+                                Полное имя
+                            </label>
+                            <input type="text" id="name" name="name" required placeholder="Иван Иванов" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">📧</span>
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" required placeholder="ivan@example.com" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">📱</span>
+                                Телефон
+                            </label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">📍</span>
+                                Адрес доставки
+                            </label>
+                            <textarea id="address" name="address" required rows="3" placeholder="Город, улица, дом, квартира" class="form-input"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large ripple">
+                            <span>Подтвердить заказ</span>
+                            <span class="btn-icon">✓</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="order-summary glass-effect slide-in" style="animation-delay: 0.2s">
+                    <h3>Ваш заказ</h3>
+                    <div class="order-items">
+                        <div class="order-item">
+                            <span>MacBook Pro M3 × 1</span>
+                            <span class="gradient-text">159 990 ₽</span>
+                        </div>
+                        <div class="order-item">
+                            <span>Sony WH-1000XM5 × 2</span>
+                            <span class="gradient-text">59 980 ₽</span>
+                        </div>
+                    </div>
+                    <div class="divider-glow"></div>
+                    <div class="order-total">
+                        <strong>Итого:</strong>
+                        <strong class="gradient-text">219 970 ₽</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СПАСИБО ЗА ЗАКАЗ -->
+    <section class="page-content" id="thankyou">
+        <div class="container">
+            <div class="thank-you-container glass-effect zoom-in">
+                <div class="success-icon pulse">
+                    <span class="success-checkmark">✓</span>
+                </div>
+                <h2 class="gradient-text">Заказ оформлен!</h2>
+                <p class="success-message">
+                    Спасибо за покупку! Подтверждение отправлено на вашу почту.
+                </p>
+                <p class="info-message">
+                    Наш менеджер свяжется с вами в течение 15 минут для уточнения деталей доставки.
+                </p>
+                <a href="#home" class="btn btn-primary btn-large ripple">
+                    <span>Вернуться в каталог</span>
+                    <span class="btn-icon">🏠</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="glass-effect">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="gradient-text">TECH LUXURY</h3>
+                    <p>Премиум электроника для избранных</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Каталог</h4>
+                    <a href="#category-laptops">Ноутбуки</a>
+                    <a href="#category-phones">Смартфоны</a>
+                    <a href="#category-accessories">Аксессуары</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Покупателям</h4>
+                    <a href="#cart">Корзина</a>
+                    <a href="#profile">Профиль</a>
+                    <a href="#checkout">Оформление</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📧 info@techluxury.com</p>
+                    <p>📱 +7 (999) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CYBER NEST. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка чата поддержки -->
+    <button class="chat-button" onclick="toggleChat()">
+        <span class="chat-icon">💬</span>
+    </button>
+
+    <!-- Окно чата -->
+    <div class="chat-window glass-effect" id="chatWindow">
+        <div class="chat-header">
+            <h4>💬 Поддержка</h4>
+            <button class="chat-close" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages">
+            <div class="chat-message bot">
+                <span class="message-avatar">🤖</span>
+                <div class="message-content">
+                    <p>Здравствуйте! Чем могу помочь?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" placeholder="Напишите сообщение..." class="chat-input">
+            <button class="chat-send">→</button>
+        </div>
+    </div>
+
+    <script>
+        // Данные товаров
+        const products = [
+            { id: 1, name: 'MacBook Pro M3', price: 159990 },
+            { id: 2, name: 'Sony WH-1000XM5', price: 29990 },
+            { id: 3, name: 'Samsung Galaxy S24 Ultra', price: 79990 },
+            { id: 4, name: 'Apple Watch Series 9', price: 44990 },
+            { id: 5, name: 'iPad Air M2', price: 64990 },
+            { id: 6, name: 'JBL Charge 5', price: 14990 }
+        ];
+
+        // Добавить в корзину с уведомлением
+        function addToCart(productId) {
+            showNotification('Товар добавлен в корзину');
+        }
+
+        // Показать уведомление
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.querySelector('.notification-text').textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Переключение темы
+        function switchTheme() {
+            const themes = ['theme-dark', 'theme-cyber', 'theme-purple'];
+            const body = document.body;
+            const currentTheme = body.className || 'theme-dark';
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            body.className = themes[nextIndex];
+            showNotification('Тема изменена');
+        }
+
+        function setTheme(theme) {
+            document.body.className = 'theme-' + theme;
+            showNotification('Тема применена');
+        }
+
+        // Живой поиск
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            if (query.length > 0) {
+                const filtered = products.filter(p => 
+                    p.name.toLowerCase().includes(query)
+                );
+                
+                if (filtered.length > 0) {
+                    searchSuggestions.innerHTML = filtered.map(p => 
+                        `<div class="suggestion-item" onclick="window.location.hash='product-${p.id}'">
+                            <span>🔍</span>
+                            <div>
+                                <strong>${p.name}</strong>
+                                <span class="suggestion-price">${p.price.toLocaleString('ru-RU')} ₽</span>
+                            </div>
+                        </div>`
+                    ).join('');
+                    searchSuggestions.classList.add('show');
+                } else {
+                    searchSuggestions.classList.remove('show');
+                }
+            } else {
+                searchSuggestions.classList.remove('show');
+            }
+        });
+
+        // Закрыть подсказки при клике вне поиска
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchSuggestions.classList.remove('show');
+            }
+        });
+
+        // Ripple эффект
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                this.appendChild(ripple);
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+                ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Избранное
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const message = this.classList.contains('active') 
+                    ? 'Добавлено в избранное' 
+                    : 'Удалено из избранного';
+                showNotification(message);
+            });
+        });
+
+        // Чат поддержки
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('show');
+        }
+
+        // Фильтр цены
+        document.querySelector('.price-range')?.addEventListener('input', function() {
+            const value = parseInt(this.value).toLocaleString('ru-RU');
+            document.querySelector('.price-value').textContent = `до ${value} ₽`;
+        });
+
+        // Навигация в профиле
+        document.querySelectorAll('.profile-menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.profile-menu-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('href').substring(1);
+                document.querySelectorAll('.profile-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            });
+        });
+
+        // Скрыть все страницы кроме активной
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            const targetPage = document.getElementById(pageId.replace('#', ''));
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            }
+        }
+
+        // Обработка якорей
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash || '#home';
+            showPage(hash);
+        });
+
+        // Показать главную при загрузке
+        window.addEventListener('load', function() {
+            const hash = window.location.hash || '#home';
+            showPage(hash);
+        });
+    </script>
+</body>
+</html>
