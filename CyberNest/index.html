@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH LUXURY - Премиум электроника</title>
+    
+    <!-- Подключение CSS модулей -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="theme-dark">
+    <!-- Анимированный фон -->
+    <div class="particles-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="notification" id="notification">
+        <span class="notification-icon">✓</span>
+        <span class="notification-text">Товар добавлен в корзину</span>
+    </div>
+
+    <!-- Шапка -->
+    <header class="glass-effect">
+        <div class="container">
+            <div class="header-top">
+                <h1 class="logo-animated">
+                    <a href="#home">
+                        <span class="logo-icon">⚡</span>
+                        TECH LUXURY
+                    </a>
+                </h1>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInput">
+                    <button class="search-btn">🔍</button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <div class="user-actions">
+                    <a href="#profile" class="action-btn">
+                        <span class="action-icon">👤</span>
+                        <span class="action-label">Профиль</span>
+                    </a>
+                    <a href="#favorites" class="action-btn">
+                        <span class="action-icon">❤️</span>
+                        <span class="action-label">Избранное</span>
+                        <span class="action-badge" style="display: none;">0</span>
+                    </a>
+                    <a href="#cart" class="action-btn">
+                        <span class="action-icon">🛒</span>
+                        <span class="action-label">Корзина</span>
+                        <span class="action-badge">2</span>
+                    </a>
+                    <button class="theme-switcher" onclick="switchTheme()">
+                        <span class="theme-icon">🌓</span>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="categories-nav">
+                <a href="#category-laptops" class="category-link">💻 Ноутбуки</a>
+                <a href="#category-phones" class="category-link">📱 Смартфоны</a>
+                <a href="#category-accessories" class="category-link">🎧 Аксессуары</a>
+                <a href="#category-watches" class="category-link">⌚ Умные часы</a>
+                <a href="#category-tablets" class="category-link">📲 Планшеты</a>
+                <a href="#sales" class="category-link special">🔥 Акции</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ГЛАВНАЯ СТРАНИЦА -->
+    <main class="page-content" id="home">
+        <section class="hero-slider">
+            <div class="slider-track">
+                <div class="slide active">
+                    <div class="slide-content glass-effect">
+                        <h2 class="gradient-text">Новинка: MacBook Pro M3</h2>
+                        <p>Невероятная производительность для профессионалов</p>
+                        <a href="#product-1" class="btn btn-primary ripple">
+                            <span>Узнать больше</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Каталог</span>
+            </div>
+
+            <div class="filters-bar glass-effect">
+                <div class="filter-group">
+                    <label>Категория:</label>
+                    <select class="filter-select">
+                        <option>Все товары</option>
+                        <option>Ноутбуки</option>
+                        <option>Смартфоны</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Цена:</label>
+                    <input type="range" class="price-range" min="0" max="200000" value="200000">
+                    <span class="price-value">до 200 000 ₽</span>
+                </div>
+            </div>
+
+            <section class="section-title fade-in">
+                <h2 class="gradient-text">🔥 Хиты продаж</h2>
+                <div class="divider-glow"></div>
+            </section>
+
+            <section class="products-grid" id="productsGrid">
+                <!-- Товары загружаются через JS -->
+            </section>
+        </div>
+    </main>
+
+    <!-- ИЗБРАННОЕ -->
+    <section class="page-content" id="favorites">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Избранное</span>
+            </div>
+
+            <h2 class="gradient-text">❤️ Избранное</h2>
+            <div id="favoritesContent"></div>
+        </div>
+    </section>
+
+    <!-- КОРЗИНА -->
+    <section class="page-content" id="cart">
+        <div class="container">
+            <h2 class="gradient-text">🛒 Ваша корзина</h2>
+            <div class="cart-container glass-effect">
+                <p style="text-align: center; padding: 2rem;">Корзина пуста</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="glass-effect">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="gradient-text">TECH LUXURY</h3>
+                    <p>Премиум электроника для избранных</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📧 info@techluxury.com</p>
+                    <p>📱 +7 (999) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TECH LUXURY. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение JS модулей -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
