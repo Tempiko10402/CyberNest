@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH LUXURY - Премиум электроника</title>
+    <title>Cyber Nest - Премиум электроника</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
@@ -34,7 +34,7 @@
                 <h1 class="logo-animated">
                     <a href="#home">
                         <span class="logo-icon">⚡</span>
-                        TECH LUXURY
+                        CYBER NEST
                     </a>
                 </h1>
 
@@ -148,9 +148,11 @@
                 <div class="divider-glow"></div>
             </section>
 
-            <section class="products-grid">
+            <!-- СЕТКА ТОВАРОВ С ФИЛЬТРАЦИЕЙ -->
+            <section class="products-grid" id="productsGrid">
+            <!-- Товары будут вставляться сюда через JS -->
                 <!-- Товар 1 -->
-                <div class="product-card card-animate" style="animation-delay: 0.1s" data-product="1">
+                <div class="product-card card-animate" data-product="1" data-category="laptops" style="animation-delay: 0.1s">
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
                         <img src="macbookpro.jpeg" alt="MacBook Pro">
@@ -177,10 +179,10 @@
                 </div>
 
                 <!-- Товар 2 -->
-                <div class="product-card card-animate" style="animation-delay: 0.2s" data-product="2">
+                <div class="product-card card-animate" style="animation-delay: 0.2s" data-product="2" data-category="audio">
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
-                        <img src="https://via.placeholder.com/300x200.png?text=Sony+WH-1000XM5" alt="Sony">
+                        <img src="sony.png" alt="Sony">
                         <div class="product-badge badge-hot">HOT</div>
                         <button class="favorite-btn">❤️</button>
                     </div>
@@ -204,10 +206,10 @@
                 </div>
 
                 <!-- Товар 3 -->
-                <div class="product-card card-animate" style="animation-delay: 0.3s" data-product="3">
+                <div class="product-card card-animate" data-product="3" data-category="phones" style="animation-delay: 0.3s" >
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
-                        <img src="https://via.placeholder.com/300x200.png?text=Galaxy+S24" alt="Samsung">
+                        <img src="galaxy24.png" alt="Samsung">
                         <div class="product-badge">5G</div>
                         <button class="favorite-btn">❤️</button>
                     </div>
@@ -231,10 +233,10 @@
                 </div>
 
                 <!-- Товар 4 -->
-                <div class="product-card card-animate" style="animation-delay: 0.4s" data-product="4">
+                <div class="product-card card-animate" style="animation-delay: 0.4s" data-product="4" data-category="watches">
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
-                        <img src="https://via.placeholder.com/300x200.png?text=Apple+Watch" alt="Apple Watch">
+                        <img src="applewath.png" alt="Apple Watch">
                         <div class="product-badge">NEW</div>
                         <button class="favorite-btn">❤️</button>
                     </div>
@@ -258,10 +260,10 @@
                 </div>
 
                 <!-- Товар 5 -->
-                <div class="product-card card-animate" style="animation-delay: 0.5s" data-product="5">
+                <div class="product-card card-animate" style="animation-delay: 0.5s" data-product="5" data-category="tablets">
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
-                        <img src="https://via.placeholder.com/300x200.png?text=iPad+Air" alt="iPad">
+                        <img src="ipad.png" alt="iPad">
                         <div class="product-badge badge-sale">-15%</div>
                         <button class="favorite-btn">❤️</button>
                     </div>
@@ -285,10 +287,10 @@
                 </div>
 
                 <!-- Товар 6 -->
-                <div class="product-card card-animate" style="animation-delay: 0.6s" data-product="6">
+                <div class="product-card card-animate" style="animation-delay: 0.6s" data-product="6" data-category="audio">
                     <div class="card-glow"></div>
                     <div class="product-image-wrapper">
-                        <img src="https://via.placeholder.com/300x200.png?text=JBL+Charge+5" alt="JBL">
+                        <img src="jbl.png" alt="JBL">
                         <div class="product-badge">IP67</div>
                         <button class="favorite-btn">❤️</button>
                     </div>
@@ -321,7 +323,7 @@
                         <div class="review-header">
                             <span class="review-avatar">👨‍💼</span>
                             <div>
-                                <h4>Алексей М.</h4>
+                                <h4>Жузумамбетова Динара.</h4>
                                 <span class="stars">⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
@@ -331,7 +333,7 @@
                         <div class="review-header">
                             <span class="review-avatar">👩‍💻</span>
                             <div>
-                                <h4>Мария К.</h4>
+                                <h4>Айтазиев Кубаныч.</h4>
                                 <span class="stars">⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
@@ -341,7 +343,7 @@
                         <div class="review-header">
                             <span class="review-avatar">👨‍🎓</span>
                             <div>
-                                <h4>Дмитрий В.</h4>
+                                <h4>Суйунбеков Билал.</h4>
                                 <span class="stars">⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
@@ -555,7 +557,7 @@
             
             <div class="cart-container glass-effect">
                 <div class="cart-item slide-in">
-                    <img src="https://via.placeholder.com/100x80.png?text=MacBook" alt="MacBook">
+                    <img src="macbookpro.jpeg" alt="MacBook">
                     <div class="cart-item-info">
                         <h3>MacBook Pro M3</h3>
                         <p class="product-desc">16" • 36GB RAM • 1TB SSD</p>
@@ -575,7 +577,7 @@
                 </div>
 
                 <div class="cart-item slide-in" style="animation-delay: 0.1s">
-                    <img src="https://via.placeholder.com/100x80.png?text=Sony" alt="Sony">
+                    <img src="sony.png" alt="Sony">
                     <div class="cart-item-info">
                         <h3>Sony WH-1000XM5</h3>
                         <p class="product-desc">Шумоподавление • 30ч</p>
@@ -714,7 +716,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="gradient-text">TECH LUXURY</h3>
+                    <h3 class="gradient-text">Cyber Nest</h3>
                     <p>Премиум электроника для избранных</p>
                 </div>
                 <div class="footer-section">
@@ -741,12 +743,12 @@
         </div>
     </footer>
 
-    <!-- Кнопка чата поддержки -->
+    <!-- Кнопка чата поддержки
     <button class="chat-button" onclick="toggleChat()">
         <span class="chat-icon">💬</span>
-    </button>
+    </button> -->
 
-    <!-- Окно чата -->
+    <!-- Окно чата
     <div class="chat-window glass-effect" id="chatWindow">
         <div class="chat-header">
             <h4>💬 Поддержка</h4>
@@ -764,18 +766,123 @@
             <input type="text" placeholder="Напишите сообщение..." class="chat-input">
             <button class="chat-send">→</button>
         </div>
-    </div>
+    </div> -->
 
     <script>
-        // Данные товаров
+        // === БАЗА ТОВАРОВ ===
         const products = [
-            { id: 1, name: 'MacBook Pro M3', price: 159990 },
-            { id: 2, name: 'Sony WH-1000XM5', price: 29990 },
-            { id: 3, name: 'Samsung Galaxy S24 Ultra', price: 79990 },
-            { id: 4, name: 'Apple Watch Series 9', price: 44990 },
-            { id: 5, name: 'iPad Air M2', price: 64990 },
-            { id: 6, name: 'JBL Charge 5', price: 14990 }
+            { id: 1, name: 'MacBook Pro M3', price: 159990, category: 'laptops', image: 'macbookpro.jpeg', badge: 'NEW' },
+            { id: 2, name: 'Sony WH-1000XM5', price: 29990, category: 'audio', image: 'sony.png', badge: 'HOT' },
+            { id: 3, name: 'Samsung Galaxy S24 Ultra', price: 79990, category: 'phones', image: 'galaxy24.png', badge: '5G' },
+            { id: 4, name: 'Apple Watch Series 9', price: 44990, category: 'watches', image: 'applewath.png', badge: 'NEW' },
+            { id: 5, name: 'iPad Air M2', price: 64990, category: 'tablets', image: 'ipad.png', badge: 'SALE' },
+            { id: 6, name: 'JBL Charge 5', price: 14990, category: 'audio', image: 'jbl.png', badge: 'IP67' }
         ];
+        
+        // === КОРЗИНА И ИЗБРАННОЕ ===
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        
+        // === ОТРИСОВКА ТОВАРОВ ===
+        function renderProducts(filterCategory = 'all') {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+        
+            const filtered = filterCategory === 'all' ? products : products.filter(p => p.category === filterCategory);
+            
+            grid.innerHTML = filtered.map((p, i) => `
+                <div class="product-card card-animate" data-product="${p.id}" data-category="${p.category}" style="animation-delay: ${0.1 + i * 0.1}s">
+                    <div class="card-glow"></div>
+                    <div class="product-image-wrapper">
+                        <img src="${p.image}" alt="${p.name}">
+                        ${p.badge ? `<div class="product-badge ${p.badge === 'HOT' ? 'badge-hot' : p.badge === 'SALE' ? 'badge-sale' : ''}">${p.badge}</div>` : ''}
+                        <button class="favorite-btn ${favorites.includes(p.id) ? 'active' : ''}">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <p class="product-desc">${p.desc || 'Премиум качество'}</p>
+                        <div class="rating"><span class="stars">⭐⭐⭐⭐⭐</span><span class="reviews">(100+)</span></div>
+                        <p class="price gradient-text">${p.price.toLocaleString('ru-RU')} ₽</p>
+                        <div class="product-actions">
+                            <a href="#product-${p.id}" class="btn btn-secondary ripple">Подробнее</a>
+                            <button class="btn btn-primary ripple add-to-cart" data-id="${p.id}">
+                                <span class="btn-icon">🛒</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        
+            attachCartAndFavEvents();
+        }
+        
+        // === ПРИВЯЗКА СОБЫТИЙ ===
+        function attachCartAndFavEvents() {
+            // Добавление в корзину
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.onclick = () => {
+                    const id = parseInt(btn.dataset.id);
+                    const existing = cart.find(item => item.id === id);
+                    if (existing) existing.qty++;
+                    else cart.push({ id, qty: 1 });
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartBadge();
+                    showNotification('Товар добавлен в корзину!');
+                };
+            });
+        
+            // Избранное
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                btn.onclick = () => {
+                    const card = btn.closest('.product-card');
+                    const id = parseInt(card.dataset.product);
+                    if (favorites.includes(id)) {
+                        favorites = favorites.filter(f => f !== id);
+                        btn.classList.remove('active');
+                        showNotification('Удалено из избранного');
+                    } else {
+                        favorites.push(id);
+                        btn.classList.add('active');
+                        showNotification('Добавлено в избранное ❤️');
+                    }
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                };
+            });
+        }
+        
+        // === ОБНОВЛЕНИЕ БЕЙДЖЕЙ ===
+        function updateCartBadge() {
+            const total = cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.querySelector('.action-badge');
+            if (badge) badge.textContent = total;
+        }
+        
+        // === ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ ===
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = link.getAttribute('href');
+                const category = hash.split('-')[1] || 'all';
+                const map = { laptops: 'laptops', phones: 'phones', audio: 'audio', watches: 'watches', tablets: 'tablets', accessories: 'accessories', sales: 'all' };
+                renderProducts(map[category] || 'all');
+                history.pushState(null, null, hash);
+            });
+        });
+        
+        // === ЗАГРУЗКА ПРИ СТАРТЕ ===
+        window.addEventListener('load', () => {
+            renderProducts('all');
+            updateCartBadge();
+            
+            // Определение текущей категории по хешу
+            const hash = location.hash;
+            if (hash.startsWith('#category-')) {
+                const category = hash.split('-')[1];
+                const map = { laptops: 'laptops', phones: 'phones', audio: 'audio', watches: 'watches', tablets: 'tablets', accessories: 'accessories' };
+                renderProducts(map[category] || 'all');
+            }
+        });
+        
 
         // Добавить в корзину с уведомлением
         function addToCart(productId) {
@@ -862,22 +969,22 @@
             });
         });
 
-        // Избранное
-        document.querySelectorAll('.favorite-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                this.classList.toggle('active');
-                const message = this.classList.contains('active') 
-                    ? 'Добавлено в избранное' 
-                    : 'Удалено из избранного';
-                showNotification(message);
-            });
-        });
+        // // Избранное
+        // document.querySelectorAll('.favorite-btn').forEach(btn => {
+        //     btn.addEventListener('click', function() {
+        //         this.classList.toggle('active');
+        //         const message = this.classList.contains('active') 
+        //             ? 'Добавлено в избранное' 
+        //             : 'Удалено из избранного';
+        //         showNotification(message);
+        //     });
+        // });
 
-        // Чат поддержки
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            chatWindow.classList.toggle('show');
-        }
+        // // Чат поддержки
+        // function toggleChat() {
+        //     const chatWindow = document.getElementById('chatWindow');
+        //     chatWindow.classList.toggle('show');
+        // }
 
         // Фильтр цены
         document.querySelector('.price-range')?.addEventListener('input', function() {
