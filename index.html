@@ -54,7 +54,7 @@
                     <a href="#favorites" class="action-btn">
                         <span class="action-icon">❤️</span>
                         <span class="action-label">Избранное</span>
-                        <span class="action-badge">3</span>
+                        <span class="action-badge" style="display:none;">0</span>
                     </a>
                     <a href="#cart" class="action-btn">
                         <span class="action-icon">🛒</span>
@@ -69,6 +69,7 @@
 
             <!-- Навигация по категориям -->
             <nav class="categories-nav">
+                <a href="#home" class="category-link" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(255, 0, 255, 0.2)); border-color: var(--accent-primary);">🏠 Главная</a>
                 <a href="#category-laptops" class="category-link">💻 Ноутбуки</a>
                 <a href="#category-phones" class="category-link">📱 Смартфоны</a>
                 <a href="#category-accessories" class="category-link">🎧 Аксессуары</a>
@@ -269,12 +270,12 @@
                     </div>
                     <div class="product-info">
                         <h3>iPad Air M2</h3>
-                        <p class="product-desc">11" • 256GB</p>
+                        <p class="product-desc">11" • 257GB</p>
                         <div class="rating">
                             <span class="stars">⭐⭐⭐⭐⭐</span>
                             <span class="reviews">(92 отзыва)</span>
                         </div>
-                        <p class="price gradient-text">64 990 ₽</p>
+                        <p class="price gradient-text">13 990 ₽</p>
                         <div class="product-actions">
                             <a href="#product-5" class="btn btn-secondary ripple">
                                 <span>Подробнее</span>
@@ -314,6 +315,7 @@
                 </div>
             </section>
 
+
             <!-- Отзывы клиентов -->
             <section class="reviews-section fade-in">
                 <h2 class="gradient-text">💬 Отзывы наших клиентов</h2>
@@ -344,7 +346,7 @@
                             <span class="review-avatar">👨‍🎓</span>
                             <div>
                                 <h4>Суйунбеков Билал.</h4>
-                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="stars">⭐</span>
                             </div>
                         </div>
                         <p>"Лучший магазин электроники! Цены честные, поддержка отличная."</p>
@@ -353,6 +355,24 @@
             </section>
         </div>
     </main>
+
+    <!-- СТРАНИЦА ИЗБРАННОЕ -->
+    <section class="page-content" id="favorites">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#home">Главная</a>
+                <span class="separator">→</span>
+                <span>Избранное</span>
+            </div>
+            <h2 class="gradient-text" style="text-align:center; margin:3rem 0;">Избранные товары</h2>
+
+            <div class="cart-container glass-effect" id="favoritesContainer" style="padding:2rem; min-height:500px;">
+                <p style="text-align:center; color:#b8c1ec; font-size:1.3rem; padding:100px 20px;">
+                    Вы ещё ничего не добавили в избранное
+                </p>
+            </div>
+        </div>
+    </section>
 
     <!-- СТРАНИЦА ТОВАРА -->
     <section class="page-content" id="product-1">
@@ -734,7 +754,7 @@
                 <div class="footer-section">
                     <h4>Контакты</h4>
                     <p>📧 info@techluxury.com</p>
-                    <p>📱 +7 (999) 123-45-67</p>
+                    <p>📱 +996 (500) 145-88-8</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -771,23 +791,50 @@
     <script>
         // === БАЗА ТОВАРОВ ===
         const products = [
-            { id: 1, name: 'MacBook Pro M3', price: 159990, category: 'laptops', image: 'macbookpro.jpeg', badge: 'NEW' },
-            { id: 2, name: 'Sony WH-1000XM5', price: 29990, category: 'audio', image: 'sony.png', badge: 'HOT' },
-            { id: 3, name: 'Samsung Galaxy S24 Ultra', price: 79990, category: 'phones', image: 'galaxy24.png', badge: '5G' },
-            { id: 4, name: 'Apple Watch Series 9', price: 44990, category: 'watches', image: 'applewath.png', badge: 'NEW' },
-            { id: 5, name: 'iPad Air M2', price: 64990, category: 'tablets', image: 'ipad.png', badge: 'SALE' },
-            { id: 6, name: 'JBL Charge 5', price: 14990, category: 'audio', image: 'jbl.png', badge: 'IP67' }
+            { id: 1, name: 'MacBook Pro M3', price: 159990, category: 'laptops', image: 'macbookpro.jpeg', badge: 'NEW', desc: '16" • 36GB RAM • 1TB SSD' },
+            { id: 2, name: 'Sony WH-1000XM5', price: 29990, category: 'audio', image: 'sony.png', badge: 'HOT', desc: 'Шумоподавление • 30ч работы' },
+            { id: 3, name: 'Samsung Galaxy S24 Ultra', price: 79990, category: 'phones', image: 'galaxy24.png', badge: '5G', desc: '512GB • AI Camera' },
+            { id: 4, name: 'Apple Watch Series 9', price: 44990, category: 'watches', image: 'applewath.png', badge: 'NEW', desc: 'GPS + Cellular' },
+            { id: 5, name: 'iPad Air M2', price: 64990, category: 'tablets', image: 'ipad.png', badge: 'SALE', desc: '11" • 256GB' },
+            { id: 6, name: 'JBL Charge 5', price: 14990, category: 'audio', image: 'jbl.png', badge: 'IP67', desc: 'Waterproof • 20ч' }
         ];
-        
+
         // === КОРЗИНА И ИЗБРАННОЕ ===
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        
+
+        // === ПОКАЗАТЬ НУЖНУЮ СТРАНИЦУ ===
+        function showPage(pageId) {
+            const cleanId = pageId.replace('#', '');
+            
+            // Скрыть все страницы
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Показать нужную страницу
+            const targetPage = document.getElementById(cleanId);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                
+                // Если открыли страницу избранного, отрисовать её
+                if (cleanId === 'favorites') {
+                    renderFavorites();
+                }
+            } else {
+                // Если страница не найдена, показать главную
+                const homePage = document.getElementById('home');
+                if (homePage) {
+                    homePage.style.display = 'block';
+                }
+            }
+        }
+
         // === ОТРИСОВКА ТОВАРОВ ===
         function renderProducts(filterCategory = 'all') {
             const grid = document.getElementById('productsGrid');
             if (!grid) return;
-        
+
             const filtered = filterCategory === 'all' ? products : products.filter(p => p.category === filterCategory);
             
             grid.innerHTML = filtered.map((p, i) => `
@@ -796,7 +843,7 @@
                     <div class="product-image-wrapper">
                         <img src="${p.image}" alt="${p.name}">
                         ${p.badge ? `<div class="product-badge ${p.badge === 'HOT' ? 'badge-hot' : p.badge === 'SALE' ? 'badge-sale' : ''}">${p.badge}</div>` : ''}
-                        <button class="favorite-btn ${favorites.includes(p.id) ? 'active' : ''}">❤️</button>
+                        <button class="favorite-btn ${favorites.includes(p.id) ? 'active' : ''}" data-id="${p.id}">❤️</button>
                     </div>
                     <div class="product-info">
                         <h3>${p.name}</h3>
@@ -812,10 +859,10 @@
                     </div>
                 </div>
             `).join('');
-        
+
             attachCartAndFavEvents();
         }
-        
+
         // === ПРИВЯЗКА СОБЫТИЙ ===
         function attachCartAndFavEvents() {
             // Добавление в корзину
@@ -830,12 +877,11 @@
                     showNotification('Товар добавлен в корзину!');
                 };
             });
-        
+
             // Избранное
             document.querySelectorAll('.favorite-btn').forEach(btn => {
                 btn.onclick = () => {
-                    const card = btn.closest('.product-card');
-                    const id = parseInt(card.dataset.product);
+                    const id = parseInt(btn.dataset.id);
                     if (favorites.includes(id)) {
                         favorites = favorites.filter(f => f !== id);
                         btn.classList.remove('active');
@@ -846,17 +892,83 @@
                         showNotification('Добавлено в избранное ❤️');
                     }
                     localStorage.setItem('favorites', JSON.stringify(favorites));
+                    updateFavoritesBadge();
                 };
             });
         }
-        
+
         // === ОБНОВЛЕНИЕ БЕЙДЖЕЙ ===
         function updateCartBadge() {
             const total = cart.reduce((sum, item) => sum + item.qty, 0);
-            const badge = document.querySelector('.action-badge');
+            const badge = document.querySelector('.action-btn[href="#cart"] .action-badge');
             if (badge) badge.textContent = total;
         }
-        
+
+        function updateFavoritesBadge() {
+            const badge = document.querySelector('.action-btn[href="#favorites"] .action-badge');
+            if (badge) {
+                badge.textContent = favorites.length;
+                badge.style.display = favorites.length > 0 ? 'block' : 'none';
+            }
+        }
+
+        // === ОТРИСОВКА ИЗБРАННОГО ===
+        function renderFavorites() {
+            const container = document.getElementById('favoritesContainer');
+            if (!container) return;
+
+            if (favorites.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#b8c1ec; font-size:1.3rem; padding:100px 20px;">Вы ещё ничего не добавили в избранное</p>';
+                return;
+            }
+
+            const items = products.filter(p => favorites.includes(p.id))
+                .map(p => `
+                    <div class="cart-item slide-in">
+                        <img src="${p.image}" alt="${p.name}">
+                        <div class="cart-item-info">
+                            <h3>${p.name}</h3>
+                            <p class="product-desc">${p.desc || 'Премиум качество'}</p>
+                        </div>
+                        <div class="cart-item-total">
+                            <p class="price gradient-text">${p.price.toLocaleString('ru-RU')} ₽</p>
+                        </div>
+                        <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
+                            <button class="btn btn-primary ripple add-to-cart-fav" data-id="${p.id}">В корзину</button>
+                            <button class="btn-remove favorite-remove" data-id="${p.id}">✕</button>
+                        </div>
+                    </div>
+                `).join('');
+
+            container.innerHTML = items;
+
+            // Добавление в корзину из избранного
+            document.querySelectorAll('.add-to-cart-fav').forEach(btn => {
+                btn.onclick = () => {
+                    const id = parseInt(btn.dataset.id);
+                    const existing = cart.find(x => x.id === id);
+                    if (existing) existing.qty++;
+                    else cart.push({id, qty: 1});
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartBadge();
+                    showNotification('Добавлено в корзину!');
+                };
+            });
+
+            // Удаление из избранного
+            document.querySelectorAll('.favorite-remove').forEach(btn => {
+                btn.onclick = () => {
+                    const id = parseInt(btn.dataset.id);
+                    favorites = favorites.filter(f => f !== id);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    renderFavorites();
+                    renderProducts();
+                    updateFavoritesBadge();
+                    showNotification('Удалено из избранного');
+                };
+            });
+        }
+
         // === ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ ===
         document.querySelectorAll('.category-link').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -865,31 +977,11 @@
                 const category = hash.split('-')[1] || 'all';
                 const map = { laptops: 'laptops', phones: 'phones', audio: 'audio', watches: 'watches', tablets: 'tablets', accessories: 'accessories', sales: 'all' };
                 renderProducts(map[category] || 'all');
-                history.pushState(null, null, hash);
+                window.location.hash = hash;
             });
         });
-        
-        // === ЗАГРУЗКА ПРИ СТАРТЕ ===
-        window.addEventListener('load', () => {
-            renderProducts('all');
-            updateCartBadge();
-            
-            // Определение текущей категории по хешу
-            const hash = location.hash;
-            if (hash.startsWith('#category-')) {
-                const category = hash.split('-')[1];
-                const map = { laptops: 'laptops', phones: 'phones', audio: 'audio', watches: 'watches', tablets: 'tablets', accessories: 'accessories' };
-                renderProducts(map[category] || 'all');
-            }
-        });
-        
 
-        // Добавить в корзину с уведомлением
-        function addToCart(productId) {
-            showNotification('Товар добавлен в корзину');
-        }
-
-        // Показать уведомление
+        // === УВЕДОМЛЕНИЯ ===
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.querySelector('.notification-text').textContent = message;
@@ -899,7 +991,7 @@
             }, 3000);
         }
 
-        // Переключение темы
+        // === ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===
         function switchTheme() {
             const themes = ['theme-dark', 'theme-cyber', 'theme-purple'];
             const body = document.body;
@@ -915,123 +1007,125 @@
             showNotification('Тема применена');
         }
 
-        // Живой поиск
-        const searchInput = document.getElementById('searchInput');
-        const searchSuggestions = document.getElementById('searchSuggestions');
-        
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            if (query.length > 0) {
-                const filtered = products.filter(p => 
-                    p.name.toLowerCase().includes(query)
-                );
-                
-                if (filtered.length > 0) {
-                    searchSuggestions.innerHTML = filtered.map(p => 
-                        `<div class="suggestion-item" onclick="window.location.hash='product-${p.id}'">
-                            <span>🔍</span>
-                            <div>
-                                <strong>${p.name}</strong>
-                                <span class="suggestion-price">${p.price.toLocaleString('ru-RU')} ₽</span>
-                            </div>
-                        </div>`
-                    ).join('');
-                    searchSuggestions.classList.add('show');
-                } else {
-                    searchSuggestions.classList.remove('show');
-                }
-            } else {
-                searchSuggestions.classList.remove('show');
-            }
-        });
-
-        // Закрыть подсказки при клике вне поиска
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                searchSuggestions.classList.remove('show');
-            }
-        });
-
-        // Ripple эффект
-        document.querySelectorAll('.ripple').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple-effect');
-                this.appendChild(ripple);
-                
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = e.clientX - rect.left - size/2 + 'px';
-                ripple.style.top = e.clientY - rect.top - size/2 + 'px';
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // // Избранное
-        // document.querySelectorAll('.favorite-btn').forEach(btn => {
-        //     btn.addEventListener('click', function() {
-        //         this.classList.toggle('active');
-        //         const message = this.classList.contains('active') 
-        //             ? 'Добавлено в избранное' 
-        //             : 'Удалено из избранного';
-        //         showNotification(message);
-        //     });
-        // });
-
-        // // Чат поддержки
-        // function toggleChat() {
-        //     const chatWindow = document.getElementById('chatWindow');
-        //     chatWindow.classList.toggle('show');
-        // }
-
-        // Фильтр цены
-        document.querySelector('.price-range')?.addEventListener('input', function() {
-            const value = parseInt(this.value).toLocaleString('ru-RU');
-            document.querySelector('.price-value').textContent = `до ${value} ₽`;
-        });
-
-        // Навигация в профиле
-        document.querySelectorAll('.profile-menu-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.profile-menu-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-                
-                const targetId = this.getAttribute('href').substring(1);
-                document.querySelectorAll('.profile-section').forEach(section => {
-                    section.style.display = 'none';
-                });
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                }
-            });
-        });
-
-        // Скрыть все страницы кроме активной
-        function showPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.style.display = 'none';
-            });
-            const targetPage = document.getElementById(pageId.replace('#', ''));
-            if (targetPage) {
-                targetPage.style.display = 'block';
-            }
-        }
-
-        // Обработка якорей
+        // === НАВИГАЦИЯ ===
         window.addEventListener('hashchange', function() {
             const hash = window.location.hash || '#home';
             showPage(hash);
         });
 
-        // Показать главную при загрузке
+        // Обработка кликов по всем ссылкам
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (link) {
+                const hash = link.getAttribute('href');
+                if (hash && hash !== '#') {
+                    window.location.hash = hash;
+                }
+            }
+        });
+
+        // === ЗАГРУЗКА ПРИ СТАРТЕ ===
         window.addEventListener('load', function() {
+            renderProducts('all');
+            updateCartBadge();
+            updateFavoritesBadge();
+            
             const hash = window.location.hash || '#home';
             showPage(hash);
+            
+            // Живой поиск
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase();
+                    if (query.length > 0) {
+                        const filtered = products.filter(p => 
+                            p.name.toLowerCase().includes(query)
+                        );
+                        
+                        if (filtered.length > 0) {
+                            searchSuggestions.innerHTML = filtered.map(p => 
+                                `<div class="suggestion-item" onclick="window.location.hash='product-${p.id}'">
+                                    <span>🔍</span>
+                                    <div>
+                                        <strong>${p.name}</strong>
+                                        <span class="suggestion-price">${p.price.toLocaleString('ru-RU')} ₽</span>
+                                    </div>
+                                </div>`
+                            ).join('');
+                            searchSuggestions.classList.add('show');
+                        } else {
+                            searchSuggestions.classList.remove('show');
+                        }
+                    } else {
+                        searchSuggestions.classList.remove('show');
+                    }
+                });
+            }
+            
+            // Закрыть подсказки при клике вне поиска
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-container')) {
+                    searchSuggestions?.classList.remove('show');
+                }
+            });
+            
+            // Ripple эффект
+            document.querySelectorAll('.ripple').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple-effect');
+                    this.appendChild(ripple);
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+                    ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+            
+            // Фильтр цены
+            const priceRange = document.querySelector('.price-range');
+            if (priceRange) {
+                priceRange.addEventListener('input', function() {
+                    const value = parseInt(this.value).toLocaleString('ru-RU');
+                    document.querySelector('.price-value').textContent = `до ${value} ₽`;
+                });
+            }
+            
+            // Навигация в профиле
+            document.querySelectorAll('.profile-menu-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.profile-menu-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.querySelectorAll('.profile-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                    }
+                });
+            });
         });
+
+        // Функция для совместимости со старым кодом
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) existing.qty++;
+            else cart.push({ id: productId, qty: 1 });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            showNotification('Товар добавлен в корзину!');
+        }
     </script>
 </body>
-</html>
+</html> 
