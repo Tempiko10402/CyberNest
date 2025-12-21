@@ -450,7 +450,7 @@
                         <a href="#profile-orders" class="profile-menu-item">
                             <span>📦</span> История заказов
                         </a>
-                        <a href="#profile-favorites" class="profile-menu-item">
+                        <a href="#favorites" class="profile-menu-item">
                             <span>❤️</span> Избранное
                         </a>
                         <a href="#profile-addresses" class="profile-menu-item">
@@ -565,7 +565,7 @@
     </section>
 
     <!-- КОРЗИНА -->
-    <section class="page-content" id="cart">
+    <section class="page-content" id="cart" style="display:none;">
         <div class="container">
             <div class="breadcrumbs">
                 <a href="#home">Главная</a>
@@ -575,58 +575,10 @@
             
             <h2 class="gradient-text">🛒 Ваша корзина</h2>
             
-            <div class="cart-container glass-effect">
-                <div class="cart-item slide-in">
-                    <img src="macbookpro.jpeg" alt="MacBook">
-                    <div class="cart-item-info">
-                        <h3>MacBook Pro M3</h3>
-                        <p class="product-desc">16" • 36GB RAM • 1TB SSD</p>
-                    </div>
-                    <div class="cart-item-quantity">
-                        <button class="qty-btn">−</button>
-                        <span class="quantity-badge">1</span>
-                        <button class="qty-btn">+</button>
-                    </div>
-                    <div class="cart-item-total">
-                        <p class="price gradient-text">159 990 ₽</p>
-                        <button class="btn-remove">
-                            <span class="remove-icon">✕</span>
-                            Удалить
-                        </button>
-                    </div>
-                </div>
-
-                <div class="cart-item slide-in" style="animation-delay: 0.1s">
-                    <img src="sony.png" alt="Sony">
-                    <div class="cart-item-info">
-                        <h3>Sony WH-1000XM5</h3>
-                        <p class="product-desc">Шумоподавление • 30ч</p>
-                    </div>
-                    <div class="cart-item-quantity">
-                        <button class="qty-btn">−</button>
-                        <span class="quantity-badge">2</span>
-                        <button class="qty-btn">+</button>
-                    </div>
-                    <div class="cart-item-total">
-                        <p class="price gradient-text">59 980 ₽</p>
-                        <button class="btn-remove">
-                            <span class="remove-icon">✕</span>
-                            Удалить
-                        </button>
-                    </div>
-                </div>
-
-                <div class="cart-summary">
-                    <div class="divider-glow"></div>
-                    <div class="total">
-                        <h3>Итого к оплате:</h3>
-                        <p class="total-price gradient-text pulse">219 970 ₽</p>
-                    </div>
-                    <a href="#checkout" class="btn btn-primary btn-large ripple">
-                        <span>Оформить заказ</span>
-                        <span class="btn-icon">→</span>
-                    </a>
-                </div>
+            <div class="cart-container glass-effect" id="cartContainer">
+                <p style="text-align:center; padding:100px 20px; color:#b8c1ec; font-size:1.3rem;">
+                    Корзина пуста
+                </p>
             </div>
         </div>
     </section>
@@ -805,6 +757,7 @@
 
         // === ПОКАЗАТЬ НУЖНУЮ СТРАНИЦУ ===
         function showPage(pageId) {
+            console.log('🔄 Переход на страницу:', pageId);
             const cleanId = pageId.replace('#', '');
             
             // Скрыть все страницы
@@ -816,17 +769,17 @@
             const targetPage = document.getElementById(cleanId);
             if (targetPage) {
                 targetPage.style.display = 'block';
+                console.log('✅ Страница показана:', cleanId);
                 
                 // Если открыли страницу избранного, отрисовать её
                 if (cleanId === 'favorites') {
                     renderFavorites();
+                } else if (cleanId === 'cart') {
+                    renderCart();
                 }
             } else {
-                // Если страница не найдена, показать главную
-                const homePage = document.getElementById('home');
-                if (homePage) {
-                    homePage.style.display = 'block';
-                }
+                console.log('❌ Страница не найдена:', cleanId);
+                document.getElementById('home').style.display = 'block';
             }
         }
 
@@ -860,11 +813,11 @@
                 </div>
             `).join('');
 
-            attachCartAndFavEvents();
+            attachEvents();
         }
 
         // === ПРИВЯЗКА СОБЫТИЙ ===
-        function attachCartAndFavEvents() {
+        function attachEvents() {
             // Добавление в корзину
             document.querySelectorAll('.add-to-cart').forEach(btn => {
                 btn.onclick = () => {
@@ -897,11 +850,118 @@
             });
         }
 
-        // === ОБНОВЛЕНИЕ БЕЙДЖЕЙ ===
+       
+        // === КОРЗИНА ===
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ id: productId, qty: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            showNotification('✅ Товар добавлен в корзину!');
+        }
+
         function updateCartBadge() {
             const total = cart.reduce((sum, item) => sum + item.qty, 0);
             const badge = document.querySelector('.action-btn[href="#cart"] .action-badge');
-            if (badge) badge.textContent = total;
+            if (badge) {
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'block' : 'none';
+            }
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartContainer');
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:100px 20px; color:#b8c1ec; font-size:1.3rem;">Корзина пуста</p>';
+                return;
+            }
+
+            const items = cart.map(item => {
+                const product = products.find(p => p.id === item.id);
+                if (!product) return '';
+                
+                return `
+                    <div class="cart-item">
+                        <img src="${product.image}" alt="${product.name}" style="width:120px; height:100px; object-fit:cover; border-radius:15px;">
+                        <div class="cart-item-info">
+                            <h3>${product.name}</h3>
+                            <p class="product-desc">${product.desc}</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                            <span class="quantity-badge">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                        <div class="cart-item-total">
+                            <p class="price gradient-text">${(product.price * item.qty).toLocaleString('ru-RU')} ₽</p>
+                            <button class="btn-remove" onclick="removeFromCart(${item.id})">
+                                <span class="remove-icon">✕</span> Удалить
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const total = cart.reduce((sum, item) => {
+                const product = products.find(p => p.id === item.id);
+                return sum + (product ? product.price * item.qty : 0);
+            }, 0);
+
+            container.innerHTML = items + `
+                <div class="cart-summary">
+                    <div class="divider-glow"></div>
+                    <div class="total">
+                        <h3>Итого к оплате:</h3>
+                        <p class="total-price gradient-text pulse">${total.toLocaleString('ru-RU')} ₽</p>
+                    </div>
+                    <button class="btn btn-primary btn-large ripple" onclick="alert('Оформление заказа в разработке')">
+                        <span>Оформить заказ</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function changeQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartBadge();
+                renderCart();
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            renderCart();
+            showNotification('❌ Удалено из корзины');
+        }
+
+        // === ИЗБРАННОЕ ===
+        function toggleFavorite(productId) {
+            if (favorites.includes(productId)) {
+                favorites = favorites.filter(f => f !== productId);
+                showNotification('💔 Удалено из избранного');
+            } else {
+                favorites.push(productId);
+                showNotification('❤️ Добавлено в избранное');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesBadge();
+            renderProducts();
+            renderFavorites();
         }
 
         function updateFavoritesBadge() {
@@ -912,61 +972,64 @@
             }
         }
 
-        // === ОТРИСОВКА ИЗБРАННОГО ===
         function renderFavorites() {
+            console.log('📦 Отрисовка избранного, товаров:', favorites.length);
+            
             const container = document.getElementById('favoritesContainer');
-            if (!container) return;
-
-            if (favorites.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#b8c1ec; font-size:1.3rem; padding:100px 20px;">Вы ещё ничего не добавили в избранное</p>';
+            if (!container) {
+                console.error('❌ Контейнер не найден!');
                 return;
             }
 
-            const items = products.filter(p => favorites.includes(p.id))
-                .map(p => `
-                    <div class="cart-item slide-in">
-                        <img src="${p.image}" alt="${p.name}">
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:100px 20px;">
+                        <div style="font-size:5rem; margin-bottom:1rem;">💔</div>
+                        <p style="color:#b8c1ec; font-size:1.3rem; margin-bottom:2rem;">
+                            Вы ещё ничего не добавили в избранное
+                        </p>
+                        <a href="#home" class="btn btn-primary ripple" style="display:inline-flex;">
+                            <span>Перейти в каталог</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            const items = favorites.map(id => {
+                const product = products.find(p => p.id === id);
+                if (!product) return '';
+                
+                return `
+                    <div class="cart-item slide-in" style="margin-bottom:1.5rem; border-bottom:1px solid var(--glass-border); padding-bottom:1.5rem;">
+                        <img src="${product.image}" alt="${product.name}" style="width:120px; height:100px; object-fit:cover; border-radius:15px;">
                         <div class="cart-item-info">
-                            <h3>${p.name}</h3>
-                            <p class="product-desc">${p.desc || 'Премиум качество'}</p>
+                            <h3>${product.name}</h3>
+                            <p class="product-desc">${product.desc}</p>
+                            <div class="rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
-                        <div class="cart-item-total">
-                            <p class="price gradient-text">${p.price.toLocaleString('ru-RU')} ₽</p>
-                        </div>
-                        <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
-                            <button class="btn btn-primary ripple add-to-cart-fav" data-id="${p.id}">В корзину</button>
-                            <button class="btn-remove favorite-remove" data-id="${p.id}">✕</button>
+                        <div style="margin-left:auto; display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
+                            <p class="price gradient-text" style="font-size:1.8rem; margin:0;">${product.price.toLocaleString('ru-RU')} ₽</p>
+                            <div style="display:flex; gap:10px;">
+                                <button class="btn btn-primary ripple" onclick="addToCart(${product.id})">
+                                    <span class="btn-icon">🛒</span>
+                                    <span>В корзину</span>
+                                </button>
+                                <button class="btn-remove" onclick="toggleFavorite(${product.id})">
+                                    <span class="remove-icon">✕</span>
+                                    Удалить
+                                </button>
+                            </div>
                         </div>
                     </div>
-                `).join('');
+                `;
+            }).join('');
 
             container.innerHTML = items;
-
-            // Добавление в корзину из избранного
-            document.querySelectorAll('.add-to-cart-fav').forEach(btn => {
-                btn.onclick = () => {
-                    const id = parseInt(btn.dataset.id);
-                    const existing = cart.find(x => x.id === id);
-                    if (existing) existing.qty++;
-                    else cart.push({id, qty: 1});
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    updateCartBadge();
-                    showNotification('Добавлено в корзину!');
-                };
-            });
-
-            // Удаление из избранного
-            document.querySelectorAll('.favorite-remove').forEach(btn => {
-                btn.onclick = () => {
-                    const id = parseInt(btn.dataset.id);
-                    favorites = favorites.filter(f => f !== id);
-                    localStorage.setItem('favorites', JSON.stringify(favorites));
-                    renderFavorites();
-                    renderProducts();
-                    updateFavoritesBadge();
-                    showNotification('Удалено из избранного');
-                };
-            });
+            console.log('✅ Избранное отрисовано');
         }
 
         // === ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ ===
@@ -986,9 +1049,7 @@
             const notification = document.getElementById('notification');
             notification.querySelector('.notification-text').textContent = message;
             notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+            setTimeout(() => notification.classList.remove('show'), 3000);
         }
 
         // === ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===
@@ -1022,6 +1083,25 @@
                     window.location.hash = hash;
                 }
             }
+        });
+        // === ИНИЦИАЛИЗАЦИЯ ===
+        window.addEventListener('load', () => {
+            console.log('🚀 Инициализация...');
+            
+            renderProducts();
+            updateCartBadge();
+            updateFavoritesBadge();
+            
+            const hash = window.location.hash || '#home';
+            showPage(hash);
+            
+            console.log('✅ Готово!');
+        });
+
+        // Слежение за изменением URL
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash || '#home';
+            showPage(hash);
         });
 
         // === ЗАГРУЗКА ПРИ СТАРТЕ ===
@@ -1072,23 +1152,24 @@
                 }
             });
             
-            // Ripple эффект
-            document.querySelectorAll('.ripple').forEach(button => {
-                button.addEventListener('click', function(e) {
+            // === RIPPLE ЭФФЕКТ ===
+            document.addEventListener('click', function(e) {
+                const button = e.target.closest('.ripple');
+                if (button) {
                     const ripple = document.createElement('span');
                     ripple.classList.add('ripple-effect');
-                    this.appendChild(ripple);
+                    button.appendChild(ripple);
                     
-                    const rect = this.getBoundingClientRect();
+                    const rect = button.getBoundingClientRect();
                     const size = Math.max(rect.width, rect.height);
                     ripple.style.width = ripple.style.height = size + 'px';
                     ripple.style.left = e.clientX - rect.left - size/2 + 'px';
                     ripple.style.top = e.clientY - rect.top - size/2 + 'px';
                     
                     setTimeout(() => ripple.remove(), 600);
-                });
+                }
             });
-            
+                
             // Фильтр цены
             const priceRange = document.querySelector('.price-range');
             if (priceRange) {
@@ -1097,6 +1178,30 @@
                     document.querySelector('.price-value').textContent = `до ${value} ₽`;
                 });
             }
+            // === ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ ===
+            document.querySelectorAll('.category-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const hash = link.getAttribute('href');
+                    
+                    // Если это категория, фильтруем товары
+                    if (hash.startsWith('#category-')) {
+                        const category = hash.split('-')[1];
+                        const map = { 
+                            laptops: 'laptops', 
+                            phones: 'phones', 
+                            audio: 'audio', 
+                            watches: 'watches', 
+                            tablets: 'tablets', 
+                            accessories: 'accessories'
+                        };
+                        renderProducts(map[category] || 'all');
+                        window.location.hash = '#home';
+                    } else {
+                        window.location.hash = hash;
+                    }
+                });
+            });
             
             // Навигация в профиле
             document.querySelectorAll('.profile-menu-item').forEach(item => {
@@ -1117,15 +1222,15 @@
             });
         });
 
-        // Функция для совместимости со старым кодом
-        function addToCart(productId) {
-            const existing = cart.find(item => item.id === productId);
-            if (existing) existing.qty++;
-            else cart.push({ id: productId, qty: 1 });
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartBadge();
-            showNotification('Товар добавлен в корзину!');
-        }
+        // // Функция для совместимости со старым кодом
+        // function addToCart(productId) {
+        //     const existing = cart.find(item => item.id === productId);
+        //     if (existing) existing.qty++;
+        //     else cart.push({ id: productId, qty: 1 });
+        //     localStorage.setItem('cart', JSON.stringify(cart));
+        //     updateCartBadge();
+        //     showNotification('Товар добавлен в корзину!');
+        // }
     </script>
 </body>
 </html> 
